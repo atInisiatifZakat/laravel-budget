@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "inisiatif/laravel-budget",
+    "description": "Private integration for budget in Inisiatif Zakat Indonesia",
     "keywords": [
-        ":vendor_name",
+        "inisiatif",
         "laravel",
-        ":package_slug"
+        "laravel-budget"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/atInisiatifZakat/laravel-budget",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Nuradiyana",
+            "email": "nuradiyana@izi.or.id",
             "role": "Developer"
         }
     ],
@@ -25,17 +25,18 @@
         "nunomaduro/collision": "^7.0",
         "orchestra/testbench": "^8.0",
         "phpunit/phpunit": "^10.0",
+        "roave/security-advisories": "dev-latest",
         "vimeo/psalm": "^5.0"
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Inisiatif\\LaravelBudget\\": "src",
+            "Inisiatif\\LaravelBudget\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Inisiatif\\LaravelBudget\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -52,7 +53,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Inisiatif\\LaravelBudget\\LaravelBudgetServiceProvider"
             ]
         }
     },
