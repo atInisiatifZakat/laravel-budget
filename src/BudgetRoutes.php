@@ -6,6 +6,7 @@ namespace Inisiatif\LaravelBudget;
 
 use Illuminate\Support\Facades\Route;
 use Inisiatif\LaravelBudget\Http\Controllers\FilterBudgetController;
+use Inisiatif\LaravelBudget\Http\Controllers\FetchOneBudgetController;
 use Inisiatif\LaravelBudget\Http\Controllers\FilterCurrentBudgetController;
 
 final class BudgetRoutes
@@ -14,5 +15,7 @@ final class BudgetRoutes
     {
         Route::get('/budget', [FilterBudgetController::class, 'index']);
         Route::get('/budget/current', [FilterCurrentBudgetController::class, 'index']);
+
+        Route::get('/budget/{budget}', [FetchOneBudgetController::class, 'show']);
     }
 }
