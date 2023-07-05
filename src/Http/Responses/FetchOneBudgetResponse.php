@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Inisiatif\LaravelBudget\Http\Responses;
 
 use Illuminate\Http\JsonResponse;
@@ -11,8 +13,7 @@ final class FetchOneBudgetResponse implements Contracts\FetchOneBudgetResponse
 {
     public function __construct(
         private readonly BudgetModel $model
-    )
-    {
+    ) {
     }
 
     public function toResponse($request): JsonResponse

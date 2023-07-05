@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Inisiatif\LaravelBudget\Http\Controllers;
 
 use Inisiatif\LaravelBudget\LaravelBudget;
@@ -15,7 +17,7 @@ final class FetchOneBudgetController
             ->firstOrFail();
 
         return app(FetchOneBudgetResponse::class, [
-            'model' => $model
+            'model' => $model,
         ]);
     }
 }

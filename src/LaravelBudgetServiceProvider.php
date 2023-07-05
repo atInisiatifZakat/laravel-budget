@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Inisiatif\LaravelBudget;
 
-use Inisiatif\LaravelBudget\Contracts;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Inisiatif\LaravelBudget\Http\Responses\FilterBudgetResponse;

@@ -21,7 +21,7 @@ final class BudgetQueryBuilder extends Builder
     public function whereCodeOrId(?string $value = null, $operator = null): self
     {
         return $this->when($value, function (BudgetQueryBuilder $builder) use ($value, $operator) {
-            return $builder->where(function (Builder $builder)  use ($value, $operator) : Builder {
+            return $builder->where(function (Builder $builder) use ($value, $operator): Builder {
                 return $builder->orWhere(LaravelBudget::getCodeColumnName(), $operator, $value)
                     ->orWhere(LaravelBudget::getCodeColumnName(), $operator, $value);
             });
