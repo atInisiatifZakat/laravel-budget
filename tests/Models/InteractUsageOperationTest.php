@@ -19,6 +19,7 @@ final class InteractUsageOperationTest extends TestCase
     {
         BudgetFactory::new()->createOne([
             LaravelBudget::getUsageAmountColumnName() => 1000,
+            LaravelBudget::getTotalAmountColumnName() => 3000,
         ]);
 
         /** @var BudgetModel $budget */
