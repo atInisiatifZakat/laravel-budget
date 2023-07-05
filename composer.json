@@ -24,7 +24,7 @@
         "laravel/pint": "^1.10",
         "nunomaduro/collision": "^7.0",
         "orchestra/testbench": "^8.0",
-        "phpunit/phpunit": "^10.0",
+        "phpunit/phpunit": "^9.5|^10.0",
         "roave/security-advisories": "dev-latest",
         "vimeo/psalm": "^5.0"
     },
