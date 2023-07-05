@@ -61,7 +61,7 @@ trait InteractWithBudget
     public function isOver(): bool
     {
         return (bool) $this->getAttribute(
-            LaravelBudget::getUsageAmountColumnName()
+            LaravelBudget::getIsOverAmountColumnName()
         );
     }
 

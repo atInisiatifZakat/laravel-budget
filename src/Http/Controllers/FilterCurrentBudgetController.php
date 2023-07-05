@@ -15,8 +15,8 @@ final class FilterCurrentBudgetController
         $paginator = LaravelBudget::getBudgetModel()
             ->newQuery()
             ->whereCurrentVersion()
-            ->whereCode((string) $request->string('code'))
-            ->whereDescription((string) $request->string('description'))
+            ->whereLike(LaravelBudget::getCodeColumnName(), (string) $request->string('code'))
+            ->whereLike(LaravelBudget::getDescriptionColumnName(), (string) $request->string('description'))
             ->cursorPaginate($request->integer('limit'))
             ->appends((array) $request->query());
 

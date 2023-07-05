@@ -4,21 +4,13 @@ declare(strict_types=1);
 
 namespace Inisiatif\LaravelBudget\Tests;
 
-use Orchestra\Testbench\TestCase as Orchestra;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Orchestra\Testbench;
+use Inisiatif\LaravelBudget\LaravelBudget;
+use Illuminate\Contracts\Config\Repository;
 use Inisiatif\LaravelBudget\LaravelBudgetServiceProvider;
 
-final class TestCase extends Orchestra
+abstract class TestCase extends Testbench\TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        Factory::guessFactoryNamesUsing(
-            static fn (string $modelName) => 'Inisiatif\\LaravelBudget\\Database\\Factories\\'.class_basename($modelName).'Factory'
-        );
-    }
-
     protected function getPackageProviders($app): array
     {
         return [
@@ -26,8 +18,35 @@ final class TestCase extends Orchestra
         ];
     }
 
-    public function getEnvironmentSetUp($app): void
+    protected function defineEnvironment($app): void
     {
-        \config()->set('database.default', 'testing');
+        \tap($app->make('config'), static function (Repository $config): void {
+            $config->set('database.default', 'testing');
+
+            $config->set('database.connections.testing', [
+                'driver' => 'sqlite',
+                'database' => ':memory:',
+                'prefix' => '',
+            ]);
+
+            $config->set('budget.connection', 'testing');
+            $config->set('budget.migration', true);
+        });
+    }
+
+    protected function defineRoutes($router): void
+    {
+        $router->group([], static function (): void {
+            LaravelBudget::routes();
+        });
+    }
+
+    protected function defineDatabaseMigrations(): void
+    {
+        Testbench\artisan($this, 'migrate', ['--database' => 'testing']);
+
+        $this->beforeApplicationDestroyed(
+            fn () => Testbench\artisan($this, 'migrate:rollback', ['--database' => 'testing'])
+        );
     }
 }
