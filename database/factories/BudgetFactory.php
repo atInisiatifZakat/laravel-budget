@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace Inisiatif\LaravelBudget\Database\Factories;
 
+use Inisiatif\LaravelBudget\Models\Budget;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/*
-class ModelFactory extends Factory
+final class BudgetFactory extends Factory
 {
-    protected $model = YourModel::class;
+    protected $model = Budget::class;
 
-    public function definition()
+    public function definition(): array
     {
         return [
 
         ];
     }
 }
-*/

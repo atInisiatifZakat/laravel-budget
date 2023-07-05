@@ -16,4 +16,15 @@ final class LaravelBudgetServiceProvider extends PackageServiceProvider
             ->hasConfigFile()
             ->hasMigration('create_budget_table');
     }
+
+    public function bootingPackage(): void
+    {
+        $this->app->singleton(BudgetConfig::class, fn () => new BudgetConfig(
+            (array) \config('budget', [])
+        ));
+
+        $this->package->runsMigrations(
+            (bool) \config('budget.migration')
+        );
+    }
 }
