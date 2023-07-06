@@ -1,5 +1,11 @@
 # Laravel Budget
 
+[![PHPUnit](https://github.com/atInisiatifZakat/laravel-budget/actions/workflows/run-tests.yml/badge.svg?branch=main)](https://github.com/atInisiatifZakat/laravel-budget/actions/workflows/run-tests.yml)
+[![Psalm](https://github.com/atInisiatifZakat/laravel-budget/actions/workflows/run-psalm-static-analyst.yml/badge.svg?branch=main)](https://github.com/atInisiatifZakat/laravel-budget/actions/workflows/run-psalm-static-analyst.yml)
+[![Laravel Pint](https://github.com/atInisiatifZakat/laravel-budget/actions/workflows/fix-php-code-style-issues.yml/badge.svg)](https://github.com/atInisiatifZakat/laravel-budget/actions/workflows/fix-php-code-style-issues.yml)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/inisiatif/laravel-budget.svg?style=flat-square)](https://packagist.org/packages/inisiatif/laravel-budget)
+[![Total Downloads](https://img.shields.io/packagist/dt/inisiatif/laravel-budget.svg?style=flat-square)](https://packagist.org/packages/inisiatif/laravel-budget)
+
 Package yang di gunakan internal di Inisiatif Zakat Indonesia untuk mengakses anggaran tahunan.
 
 > Versi laravel yang digunakan adala ^9.43 atau ^10.0
