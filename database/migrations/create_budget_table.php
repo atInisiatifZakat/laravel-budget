@@ -30,4 +30,9 @@ return new class extends Migration
             }
         });
     }
+
+    public function down(): void
+    {
+        Schema::connection(LaravelBudget::getConnectionName())->dropIfExists(LaravelBudget::getTableName());
+    }
 };
