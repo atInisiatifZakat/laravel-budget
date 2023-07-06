@@ -3,12 +3,24 @@
 declare(strict_types=1);
 
 return [
+    /**
+     * This is connection database must be available in database config
+     */
     'connection' => env('LARAVEL_BUDGET_ELOQUENT_CONNECTION', env('DB_CONNECTION', 'sqlite')),
 
+    /**
+     * This is table name for budget
+     */
     'table' => env('LARAVEL_BUDGET_ELOQUENT_TABLE', 'budgets'),
 
+    /**
+     * Indicated must be running migration, internally used in testing
+     */
     'migration' => env('LARAVEL_BUDGET_ELOQUENT_MIGRATION', false),
 
+    /**
+     * Column name mapping, you can change this value is column name is different
+     */
     'columns' => [
         'id' => 'id',
         'code' => 'code',
