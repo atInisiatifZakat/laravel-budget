@@ -36,6 +36,10 @@ abstract class BudgetModel extends Model implements HasBudget, HasUsageOperation
 
     public function usesTimestamps(): bool
     {
+        if (LaravelBudget::isModelUsesTimestamps()) {
+            return parent::usesTimestamps();
+        }
+
         return LaravelBudget::isModelUsesTimestamps();
     }
 }
