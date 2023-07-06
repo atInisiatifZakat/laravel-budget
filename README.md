@@ -2,6 +2,8 @@
 
 Package yang di gunakan internal di Inisiatif Zakat Indonesia untuk mengakses anggaran tahunan.
 
+> Versi laravel yang digunakan adala ^9.43 atau ^10.0
+
 ## Installation
 
 Anda dapat menginstall menggunakan composer
