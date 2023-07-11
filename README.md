@@ -21,14 +21,14 @@ composer require inisiatif/laravel-budget
 Jika diperlukan anda bisa mempublish file migrasi dan menjalankannya dengan perintah
 
 ```bash
-php artisan vendor:publish --tag="laravel-budget-migrations"
+php artisan vendor:publish --tag="budget-migrations"
 php artisan migrate
 ```
 
 Anda juga bisa mempublish file konfigurasi dengan perintah
 
 ```bash
-php artisan vendor:publish --tag="laravel-budget-config"
+php artisan vendor:publish --tag="budget-config"
 ```
 
 Ini adalah isi dari file konfigurasi yang di publish :
