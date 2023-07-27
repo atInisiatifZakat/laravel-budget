@@ -210,7 +210,8 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [Nuradiyana](https://github.com/atInisiatifZakat)
+- [Annisa Nadia Nuraqilah](https://github.com/nadiannisaqilah)
+- [Nuradiyana](https://github.com/nuradiyana)
 - [All Contributors](../../contributors)
 
 ## License
