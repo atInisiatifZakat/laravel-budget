@@ -20,6 +20,7 @@ final class BudgetFactory extends Factory
             LaravelBudget::getTotalAmountColumnName() => $this->faker->randomNumber(),
             LaravelBudget::getUsageAmountColumnName() => $this->faker->randomNumber(),
             LaravelBudget::getIsOverAmountColumnName() => $this->faker->boolean(),
+            LaravelBudget::getVersionColumnName() => now()->year,
         ];
     }
 }

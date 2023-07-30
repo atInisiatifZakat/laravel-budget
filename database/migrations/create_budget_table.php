@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::connection(LaravelBudget::getConnectionName())->create(LaravelBudget::getTableName(), static function (Blueprint $table): void {
-            $table->unsignedBigInteger(LaravelBudget::getIdColumnName())->primary();
+            $table->unsignedBigInteger(LaravelBudget::getIdColumnName())->autoIncrement();
             $table->string(LaravelBudget::getCodeColumnName())->nullable();
             $table->string(LaravelBudget::getDescriptionColumnName())->nullable();
             $table->unsignedBigInteger(LaravelBudget::getTotalAmountColumnName())->nullable();
