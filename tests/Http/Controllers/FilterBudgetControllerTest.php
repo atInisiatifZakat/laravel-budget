@@ -27,7 +27,9 @@ final class FilterBudgetControllerTest extends TestCase
         BudgetFactory::new([
             LaravelBudget::getVersionColumnName() => now()->year,
         ])->count(2)->create();
-        BudgetFactory::new()->count(2)->create();
+        BudgetFactory::new([
+            LaravelBudget::getVersionColumnName() => now()->subYear()->year,
+        ])->count(2)->create();
 
         $response = $this->getJson('/budget?version='.now()->year)->assertSuccessful();
 
