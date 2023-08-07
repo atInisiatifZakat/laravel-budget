@@ -29,7 +29,7 @@ final class LaravelBudget
     }
 
     /**
-     * @param class-string<BudgetModel> $model
+     * @param  class-string<BudgetModel>  $model
      */
     public static function useBudgetModelClass(string $model): void
     {
