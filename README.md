@@ -34,6 +34,10 @@ php artisan vendor:publish --tag="budget-config"
 Ini adalah isi dari file konfigurasi yang di publish :
 
 ```php
+<?php
+
+declare(strict_types=1);
+
 return [
     /**
      * This is connection database must be available in database config
@@ -63,11 +67,6 @@ return [
     ],
 
     /**
-     * Column version name, for json type fill using json path, ex : `version->year`
-     */
-    'version_column_name' => 'year',
-
-    /**
      * Column type for version column
      *
      * Support: int, string, json
@@ -75,11 +74,20 @@ return [
     'version_column_type' => 'int',
 
     /**
+     * Column version name
+     */
+    'version_column_name' => 'year',
+
+    /**
+     * For json type fill using json path, ex : `version->year`
+     */
+    'version_json_column_path' => null,
+
+    /**
      * Disable or enable timestamps in model
      */
     'model_uses_timestamps' => true,
 ];
-
 ```
 
 ## Penggunaan
