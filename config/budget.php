@@ -31,16 +31,21 @@ return [
     ],
 
     /**
-     * Column version name, for json type fill using json path, ex : `version->year`
-     */
-    'version_column_name' => 'year',
-
-    /**
      * Column type for version column
      *
      * Support: int, string, json
      */
     'version_column_type' => 'int',
+
+    /**
+     * Column version name
+     */
+    'version_column_name' => 'year',
+
+    /**
+     * For json type fill using json path, ex : `version->year`
+     */
+    'version_json_column_path' => null,
 
     /**
      * Disable or enable timestamps in model

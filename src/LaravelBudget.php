@@ -29,7 +29,7 @@ final class LaravelBudget
     }
 
     /**
-     * @param  class-string<BudgetModel>  $model
+     * @param class-string<BudgetModel> $model
      */
     public static function useBudgetModelClass(string $model): void
     {
@@ -86,6 +86,11 @@ final class LaravelBudget
     public static function getVersionColumnName(): string
     {
         return self::getBudgetConfig()->getVersionColumnName();
+    }
+
+    public static function getVersionColumnEloquentName(): string
+    {
+        return self::getBudgetConfig()->getVersionColumnEloquentName();
     }
 
     public static function getVersionColumnType(): string

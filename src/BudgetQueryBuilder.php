@@ -31,12 +31,12 @@ final class BudgetQueryBuilder extends Builder
 
     public function whereCurrentVersion(): self
     {
-        return $this->where(LaravelBudget::getVersionColumnName(), now()->year);
+        return $this->where(LaravelBudget::getVersionColumnEloquentName(), now()->year);
     }
 
     public function whereVersion(int|string $value = null, $operator = '=', $boolean = 'and'): self
     {
-        return $this->when($value, fn (BudgetQueryBuilder $builder) => $builder->where(LaravelBudget::getVersionColumnName(), $operator, $value, $boolean));
+        return $this->when($value, fn (BudgetQueryBuilder $builder) => $builder->where(LaravelBudget::getVersionColumnEloquentName(), $operator, $value, $boolean));
     }
 
     public function whereCodeOrId(int|string $value = null, $operator = '='): self

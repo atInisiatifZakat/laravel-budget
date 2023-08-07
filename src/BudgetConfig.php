@@ -70,6 +70,19 @@ final class BudgetConfig
         return Arr::get($this->config, 'version_column_name', 'year');
     }
 
+    public function getVersionColumnEloquentName(): ?string
+    {
+        if($this->getVersionColumnType() === 'json') {
+            $path = Arr::get($this->config, 'version_json_column_path');
+
+            Assert::notNull($path);
+
+            return $path;
+        };
+
+        return $this->getVersionColumnName();
+    }
+
     public function getVersionColumnType(): string
     {
         return Arr::get($this->config, 'version_column_type', 'int');
