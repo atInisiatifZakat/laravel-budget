@@ -73,6 +73,11 @@ final class LaravelBudget
         return self::getBudgetConfig()->getUsageAmountColumnName();
     }
 
+    public static function  getOldUsageAmountColumnName(): string
+    {
+        return self::getBudgetConfig()->getOldUsageAmountColumnName();
+    }
+
     public static function getIsOverAmountColumnName(): string
     {
         return self::getBudgetConfig()->getIsOverAmountColumnName();

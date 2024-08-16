@@ -27,6 +27,7 @@ return [
         'description' => 'description',
         'total_amount' => 'total_amount',
         'usage_amount' => 'usage_amount',
+        'old_usage_amount' => 'old_usage_amount',
         'is_over' => 'is_over',
     ],
 

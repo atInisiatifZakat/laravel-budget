@@ -19,6 +19,7 @@ final class InteractUsageOperationTest extends TestCase
     {
         BudgetFactory::new()->createOne([
             LaravelBudget::getUsageAmountColumnName() => 1000,
+            LaravelBudget::getOldUsageAmountColumnName() => 500,
             LaravelBudget::getTotalAmountColumnName() => 3000,
         ]);
 
@@ -35,8 +36,9 @@ final class InteractUsageOperationTest extends TestCase
     public function test_can_increase_over_usage_when_is_over_true(): void
     {
         BudgetFactory::new()->createOne([
-            LaravelBudget::getTotalAmountColumnName() => 1000,
+            LaravelBudget::getTotalAmountColumnName() => 2000,
             LaravelBudget::getUsageAmountColumnName() => 1000,
+            LaravelBudget::getOldUsageAmountColumnName() => 1000,
             LaravelBudget::getIsOverAmountColumnName() => true,
         ]);
 
@@ -71,7 +73,8 @@ final class InteractUsageOperationTest extends TestCase
         $this->expectException(BudgetOverLimit::class);
 
         BudgetFactory::new()->createOne([
-            LaravelBudget::getTotalAmountColumnName() => 1000,
+            LaravelBudget::getTotalAmountColumnName() => 2000,
+            LaravelBudget::getOldUsageAmountColumnName() => 1000,
             LaravelBudget::getUsageAmountColumnName() => 1000,
             LaravelBudget::getIsOverAmountColumnName() => false,
         ]);

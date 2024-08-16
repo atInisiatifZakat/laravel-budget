@@ -55,6 +55,11 @@ final class BudgetConfig
         return Arr::get($this->config, 'columns.usage_amount', 'usage_amount');
     }
 
+    public function getOldUsageAmountColumnName(): string
+    {
+        return Arr::get($this->config, 'columns.old_usage_amount', 'old_usage_amount');
+    }
+
     public function isModelUsesTimestamps(): bool
     {
         return Arr::get($this->config, 'model_uses_timestamps', true);
