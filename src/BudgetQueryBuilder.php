@@ -34,12 +34,12 @@ final class BudgetQueryBuilder extends Builder
         return $this->where(LaravelBudget::getVersionColumnEloquentName(), now()->year);
     }
 
-    public function whereVersion(int|string $value = null, $operator = '=', $boolean = 'and'): self
+    public function whereVersion(int|string|null $value = null, $operator = '=', $boolean = 'and'): self
     {
         return $this->when($value, fn (BudgetQueryBuilder $builder) => $builder->where(LaravelBudget::getVersionColumnEloquentName(), $operator, $value, $boolean));
     }
 
-    public function whereCodeOrId(int|string $value = null, $operator = '='): self
+    public function whereCodeOrId(int|string|null $value = null, $operator = '='): self
     {
         return $this->when($value !== null, function (BudgetQueryBuilder $builder) use ($value, $operator) {
             return $builder->where(function (Builder $builder) use ($value, $operator): Builder {
@@ -49,12 +49,12 @@ final class BudgetQueryBuilder extends Builder
         });
     }
 
-    public function whereCode(string $value = null, $operator = '=', $boolean = 'and'): self
+    public function whereCode(?string $value = null, $operator = '=', $boolean = 'and'): self
     {
         return $this->when($value, fn (BudgetQueryBuilder $builder) => $builder->where(LaravelBudget::getCodeColumnName(), $operator, $value, $boolean));
     }
 
-    public function whereDescription(string $value = null, $operator = '=', $boolean = 'and'): self
+    public function whereDescription(?string $value = null, $operator = '=', $boolean = 'and'): self
     {
         return $this->when($value, fn (BudgetQueryBuilder $builder) => $builder->where(LaravelBudget::getDescriptionColumnName(), $operator, $value, $boolean));
     }

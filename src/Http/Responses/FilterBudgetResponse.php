@@ -13,8 +13,7 @@ final class FilterBudgetResponse implements Contracts\FilterBudgetResponse
 {
     public function __construct(
         private readonly CursorPaginator $paginator
-    ) {
-    }
+    ) {}
 
     public function toResponse($request): JsonResponse
     {
