@@ -26,7 +26,6 @@ trait InteractUsageOperation
             $newAmount = $this->getUsageAmount() + $this->getLegacyUsageAmount() + $amount;
         }
 
-
         if ((int) $newAmount >= (int) $this->getTotalAmount() && $this->isOver() === false) {
             throw BudgetOverLimit::make($this->getTotalAmount(), $newAmount);
         }
