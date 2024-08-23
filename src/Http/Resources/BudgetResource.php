@@ -12,7 +12,7 @@ final class BudgetResource extends JsonResource
     public function toArray($request): array
     {
         if (! $this->resource instanceof HasBudget) {
-            throw new \RuntimeException('$resource must be instanceof ' . HasBudget::class);
+            throw new \RuntimeException('$resource must be instanceof '.HasBudget::class);
         }
 
         return [
