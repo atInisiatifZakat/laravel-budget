@@ -19,7 +19,7 @@ final class InteractWithBudgetTest extends TestCase
         BudgetFactory::new()->createOne([
             LaravelBudget::getTotalAmountColumnName() => 2000,
             LaravelBudget::getUsageAmountColumnName() => 1000,
-            LaravelBudget::getOldUsageAmountColumnName() => 1000,
+            LaravelBudget::getLegacyUsageAmountColumnName() => 1000,
             LaravelBudget::getIsOverAmountColumnName() => false,
         ]);
 
@@ -28,7 +28,7 @@ final class InteractWithBudgetTest extends TestCase
 
         $this->assertSame(1000.0, $budget->getBalance());
         $this->assertSame(1000.0, $budget->getUsageAmount());
-        $this->assertSame(1000.0, $budget->getOldUsageAmount());
+        $this->assertSame(1000.0, $budget->getLegacyUsageAmount());
         $this->assertSame(2000.0, $budget->getTotalAmount());
         $this->assertFalse($budget->isLimitReached());
         $this->assertFalse($budget->isOver());

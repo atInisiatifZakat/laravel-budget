@@ -27,9 +27,11 @@ return [
         'description' => 'description',
         'total_amount' => 'total_amount',
         'usage_amount' => 'usage_amount',
-        'old_usage_amount' => 'old_usage_amount',
+        'legacy_usage_amount' => 'legacy_usage_amount',
         'is_over' => 'is_over',
     ],
+
+    'include_legacy_usage_amount'  => env('INCLUDE_LEGACY_USAGE_AMOUNT', true),
 
     /**
      * Column type for version column
