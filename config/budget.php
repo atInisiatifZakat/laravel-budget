@@ -31,6 +31,8 @@ return [
         'is_over' => 'is_over',
     ],
 
+    // Jika true, maka gunakan include_legacy_amount untuk menghitung budget sudah over atau belum
+    // Jika false, maka include_legacy_amount tidak digunakan untuk menghitung budget sudah over atau belum
     'include_legacy_usage_amount' => env('LARAVEL_BUDGET_INCLUDE_LEGACY_USAGE_AMOUNT', true),
 
     /**

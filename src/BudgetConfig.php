@@ -62,7 +62,7 @@ final class BudgetConfig
 
     public function includeLegacyUsageAmountName(): bool
     {
-        return Arr::get($this->config, 'include_legacy_usage_amount', 'include_legacy_usage_amount');
+        return Arr::get($this->config, 'include_legacy_usage_amount', true);
     }
 
     public function isModelUsesTimestamps(): bool
