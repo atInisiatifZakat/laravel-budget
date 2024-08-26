@@ -18,14 +18,21 @@ trait InteractUsageOperation
             throw new \RuntimeException('Model not exists');
         }
 
+        $isIncludeLegacy = LaravelBudget::includeLegacyUsageAmountName();
+
         $newAmount = $this->getUsageAmount() + $amount;
+
+        if ($isIncludeLegacy) {
+            $newAmount = $this->getUsageAmount() + $this->getLegacyUsageAmount() + $amount;
+        }
 
         if ((int) $newAmount >= (int) $this->getTotalAmount() && $this->isOver() === false) {
             throw BudgetOverLimit::make($this->getTotalAmount(), $newAmount);
         }
 
         $this->increment(
-            LaravelBudget::getUsageAmountColumnName(), $amount
+            LaravelBudget::getUsageAmountColumnName(),
+            $amount
         );
     }
 
@@ -37,7 +44,8 @@ trait InteractUsageOperation
 
         if ((int) $this->getUsageAmount() > 0) {
             $this->decrement(
-                LaravelBudget::getUsageAmountColumnName(), $amount
+                LaravelBudget::getUsageAmountColumnName(),
+                $amount
             );
         }
     }

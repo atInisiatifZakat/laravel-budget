@@ -53,6 +53,13 @@ trait InteractWithBudget
         );
     }
 
+    public function getLegacyUsageAmount(): int|float
+    {
+        return (float) $this->getAttribute(
+            LaravelBudget::getLegacyUsageAmountColumnName()
+        );
+    }
+
     public function getBalance(): int|float
     {
         return $this->getTotalAmount() - $this->getUsageAmount();

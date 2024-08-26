@@ -14,8 +14,8 @@ use Inisiatif\LaravelBudget\Models\Traits\InteractUsageOperation;
 
 abstract class BudgetModel extends Model implements HasBudget, HasUsageOperation
 {
-    use InteractWithBudget;
     use InteractUsageOperation;
+    use InteractWithBudget;
 
     public static function query(): BudgetQueryBuilder
     {

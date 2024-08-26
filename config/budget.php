@@ -27,8 +27,17 @@ return [
         'description' => 'description',
         'total_amount' => 'total_amount',
         'usage_amount' => 'usage_amount',
+        'legacy_usage_amount' => 'legacy_usage_amount',
         'is_over' => 'is_over',
     ],
+
+    /**
+     * Flaging untuk perhitungan `usage_amount` pada budget
+     *
+     * Jika `true`, maka gunakan include_legacy_amount untuk menghitung budget sudah over atau belum
+     * Jika `false`, maka include_legacy_amount tidak digunakan untuk menghitung budget sudah over atau belum
+     */
+    'include_legacy_usage_amount' => env('LARAVEL_BUDGET_INCLUDE_LEGACY_USAGE_AMOUNT', true),
 
     /**
      * Column type for version column

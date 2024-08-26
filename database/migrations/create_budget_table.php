@@ -15,8 +15,9 @@ return new class extends Migration
             $table->unsignedBigInteger(LaravelBudget::getIdColumnName())->autoIncrement();
             $table->string(LaravelBudget::getCodeColumnName())->nullable();
             $table->string(LaravelBudget::getDescriptionColumnName())->nullable();
-            $table->unsignedBigInteger(LaravelBudget::getTotalAmountColumnName())->nullable();
-            $table->unsignedBigInteger(LaravelBudget::getUsageAmountColumnName())->nullable();
+            $table->unsignedBigInteger(LaravelBudget::getTotalAmountColumnName())->default(0);
+            $table->unsignedBigInteger(LaravelBudget::getUsageAmountColumnName())->default(0);
+            $table->unsignedBigInteger(LaravelBudget::getLegacyUsageAmountColumnName())->default(0);
             $table->boolean(LaravelBudget::getIsOverAmountColumnName())->nullable();
 
             if (LaravelBudget::getVersionColumnType() === 'json') {

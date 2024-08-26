@@ -13,8 +13,7 @@ final class FetchOneBudgetResponse implements Contracts\FetchOneBudgetResponse
 {
     public function __construct(
         private readonly BudgetModel $model
-    ) {
-    }
+    ) {}
 
     public function toResponse($request): JsonResponse
     {

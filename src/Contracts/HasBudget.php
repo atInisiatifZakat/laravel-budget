@@ -16,6 +16,8 @@ interface HasBudget
 
     public function getUsageAmount(): int|float;
 
+    public function getLegacyUsageAmount(): int|float;
+
     public function getBalance(): int|float;
 
     public function isOver(): bool;

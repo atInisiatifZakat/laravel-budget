@@ -55,6 +55,16 @@ final class BudgetConfig
         return Arr::get($this->config, 'columns.usage_amount', 'usage_amount');
     }
 
+    public function getLegacyUsageAmountColumnName(): string
+    {
+        return Arr::get($this->config, 'columns.legacy_usage_amount', 'legacy_usage_amount');
+    }
+
+    public function includeLegacyUsageAmountName(): bool
+    {
+        return Arr::get($this->config, 'include_legacy_usage_amount', true);
+    }
+
     public function isModelUsesTimestamps(): bool
     {
         return Arr::get($this->config, 'model_uses_timestamps', true);

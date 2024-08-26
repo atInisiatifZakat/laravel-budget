@@ -6,6 +6,4 @@ namespace Inisiatif\LaravelBudget\Contracts;
 
 use Illuminate\Contracts\Support\Responsable;
 
-interface FilterBudgetResponse extends Responsable
-{
-}
+interface FilterBudgetResponse extends Responsable {}
