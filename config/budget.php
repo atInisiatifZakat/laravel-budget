@@ -31,7 +31,7 @@ return [
         'is_over' => 'is_over',
     ],
 
-    'include_legacy_usage_amount'  => env('LARAVEL_BUDGET_INCLUDE_LEGACY_USAGE_AMOUNT', true),
+    'include_legacy_usage_amount' => env('LARAVEL_BUDGET_INCLUDE_LEGACY_USAGE_AMOUNT', true),
 
     /**
      * Column type for version column
