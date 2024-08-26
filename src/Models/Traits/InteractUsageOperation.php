@@ -18,7 +18,7 @@ trait InteractUsageOperation
             throw new \RuntimeException('Model not exists');
         }
 
-        $isIncludeLegacy = config('budget.include_legacy_usage_amount');
+        $isIncludeLegacy = LaravelBudget::includeLegacyUsageAmountName();
 
         $newAmount = $this->getUsageAmount() + $amount;
 
