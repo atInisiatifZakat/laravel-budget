@@ -14,6 +14,8 @@ interface HasBudget
 
     public function getTotalAmount(): int|float;
 
+    public function getTotalUsageAmount(): int|float;
+
     public function getUsageAmount(): int|float;
 
     public function getLegacyUsageAmount(): int|float;
@@ -23,4 +25,6 @@ interface HasBudget
     public function isOver(): bool;
 
     public function isLimitReached(): bool;
+
+    public function isOverUsage(float $newAmount, bool $exception): bool;
 }

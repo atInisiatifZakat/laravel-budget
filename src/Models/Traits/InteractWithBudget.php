@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Inisiatif\LaravelBudget\Models\Traits;
 
 use Inisiatif\LaravelBudget\LaravelBudget;
+use Inisiatif\LaravelBudget\Exceptions\BudgetOverLimit;
 
 trait InteractWithBudget
 {
@@ -75,5 +76,36 @@ trait InteractWithBudget
     public function isLimitReached(): bool
     {
         return $this->getUsageAmount() >= $this->getTotalAmount();
+    }
+
+    public function getTotalUsageAmount(): float
+    {
+        $totalUsageAmount = $this->getUsageAmount();
+
+        if (LaravelBudget::includeLegacyUsageAmountName()) {
+            $totalUsageAmount = $this->getUsageAmount() + $this->getLegacyUsageAmount();
+        }
+
+        return $totalUsageAmount;
+    }
+
+    public function isOverUsage(float $newAmount, bool $exception = true): bool
+    {
+        // Hitung jumlah baru setelah penambahan
+        $newTotalUsage = $this->getTotalUsageAmount() + $newAmount;
+
+        // Cek apakah jumlah baru melebihi total anggaran
+        if ((int) $newTotalUsage >= (int) $this->getTotalAmount() && $this->isOver() === false) {
+            // Jika opsi exception aktif, lempar exception
+            if ($exception) {
+                throw BudgetOverLimit::make($this->getTotalAmount(), $newTotalUsage);
+            }
+
+            // Kembalikan nilai true jika over budget
+            return true;
+        }
+
+        // Kembalikan nilai false jika tidak over budget
+        return false;
     }
 }

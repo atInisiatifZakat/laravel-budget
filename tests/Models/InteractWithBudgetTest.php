@@ -30,6 +30,7 @@ final class InteractWithBudgetTest extends TestCase
         $this->assertSame(1000.0, $budget->getUsageAmount());
         $this->assertSame(1000.0, $budget->getLegacyUsageAmount());
         $this->assertSame(2000.0, $budget->getTotalAmount());
+        $this->assertSame(2000.0, $budget->getTotalUsageAmount());
         $this->assertFalse($budget->isLimitReached());
         $this->assertFalse($budget->isOver());
     }
