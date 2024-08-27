@@ -76,4 +76,15 @@ trait InteractWithBudget
     {
         return $this->getUsageAmount() >= $this->getTotalAmount();
     }
+
+    public function getTotalUsageAmount(): float
+    {
+        $totalUsageAmount = $this->getUsageAmount();
+
+        if (LaravelBudget::includeLegacyUsageAmountName()) {
+            $totalUsageAmount = $this->getUsageAmount() + $this->getLegacyUsageAmount();
+        }
+
+        return $totalUsageAmount;
+    }
 }
