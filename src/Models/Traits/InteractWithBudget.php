@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Inisiatif\LaravelBudget\Models\Traits;
 
-use Inisiatif\LaravelBudget\Exceptions\BudgetOverLimit;
 use Inisiatif\LaravelBudget\LaravelBudget;
+use Inisiatif\LaravelBudget\Exceptions\BudgetOverLimit;
 
 trait InteractWithBudget
 {
