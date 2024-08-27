@@ -18,13 +18,7 @@ trait InteractUsageOperation
             throw new \RuntimeException('Model not exists');
         }
 
-        $isIncludeLegacy = LaravelBudget::includeLegacyUsageAmountName();
-
-        $newAmount = $this->getUsageAmount() + $amount;
-
-        if ($isIncludeLegacy) {
-            $newAmount = $this->getUsageAmount() + $this->getLegacyUsageAmount() + $amount;
-        }
+        $newAmount =  $this->getTotalUsageAmount() + $amount;
 
         if ((int) $newAmount >= (int) $this->getTotalAmount() && $this->isOver() === false) {
             throw BudgetOverLimit::make($this->getTotalAmount(), $newAmount);
