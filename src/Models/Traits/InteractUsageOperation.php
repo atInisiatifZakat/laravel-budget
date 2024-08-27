@@ -18,7 +18,7 @@ trait InteractUsageOperation
             throw new \RuntimeException('Model not exists');
         }
 
-        $newAmount =  $this->getTotalUsageAmount() + $amount;
+        $newAmount = $this->getTotalUsageAmount() + $amount;
 
         if ((int) $newAmount >= (int) $this->getTotalAmount() && $this->isOver() === false) {
             throw BudgetOverLimit::make($this->getTotalAmount(), $newAmount);
