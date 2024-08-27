@@ -25,4 +25,6 @@ interface HasBudget
     public function isOver(): bool;
 
     public function isLimitReached(): bool;
+
+    public function isOverUsage(float $newAmount, bool $exception): bool;
 }
