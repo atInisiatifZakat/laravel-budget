@@ -117,7 +117,7 @@ trait InteractWithBudget
         if ($version === LaravelBudget::getVersionJsonColumnPath()) {
             $metadata = $this->getAttribute(LaravelBudget::getVersionColumnName());
 
-            return json_decode($metadata, true);;
+            return json_decode($metadata, true);
         }
 
         return $this->getAttribute($version);
