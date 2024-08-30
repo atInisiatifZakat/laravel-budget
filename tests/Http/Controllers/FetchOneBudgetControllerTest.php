@@ -8,6 +8,7 @@ use Inisiatif\LaravelBudget\Tests\TestCase;
 use Inisiatif\LaravelBudget\Contracts\HasBudget;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Inisiatif\LaravelBudget\Database\Factories\BudgetFactory;
+use Inisiatif\LaravelBudget\LaravelBudget;
 
 final class FetchOneBudgetControllerTest extends TestCase
 {
@@ -59,5 +60,30 @@ final class FetchOneBudgetControllerTest extends TestCase
 
         $this->getJson('/budget/9')->assertNotFound();
         $this->getJson('/budget/CODE')->assertNotFound();
+    }
+
+    public function test_can_show_budget_using_version_json()
+    {
+        /** @var HasBudget $budget */
+        $budget = BudgetFactory::new([
+            'code' => 'CODE001',
+            LaravelBudget::getVersionColumnName() => json_encode([
+                'implementation' => [
+                    'year' => 2024,
+                ],
+            ]),
+        ])->createOne();
+
+        $response = $this->getJson('/budget/1')->assertSuccessful();
+
+        $this->assertSame($budget->getId(), $response->json('data.id'));
+        $this->assertSame($budget->getCode(), $response->json('data.code'));
+        $this->assertSame($budget->getDescription(), $response->json('data.description'));
+        $this->assertSame($budget->getTotalAmount(), (float) $response->json('data.total_amount'));
+        $this->assertSame($budget->getUsageAmount(), (float) $response->json('data.usage_amount'));
+        $this->assertSame($budget->getBalance(), (float) $response->json('data.balance_amount'));
+        $this->assertSame($budget->isOver(), $response->json('data.is_over'));
+        $this->assertSame($budget->isLimitReached(), $response->json('data.is_limit_reached'));
+        $this->assertSame($budget->getVersion(), $response->json('data.version'));
     }
 }
