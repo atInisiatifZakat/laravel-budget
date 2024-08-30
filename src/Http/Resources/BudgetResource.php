@@ -6,6 +6,7 @@ namespace Inisiatif\LaravelBudget\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use Inisiatif\LaravelBudget\Contracts\HasBudget;
+use Inisiatif\LaravelBudget\LaravelBudget;
 
 final class BudgetResource extends JsonResource
 {

@@ -83,7 +83,7 @@ final class BudgetConfig
     public function getVersionColumnEloquentName(): string
     {
         if ($this->getVersionColumnType() === 'json') {
-            $path = Arr::get($this->config, 'version_json_column_path');
+            $path = $this->getVersionJsonColumnPath();
 
             Assert::notNull($path);
 
@@ -96,5 +96,10 @@ final class BudgetConfig
     public function getVersionColumnType(): string
     {
         return Arr::get($this->config, 'version_column_type', 'int');
+    }
+
+    public function getVersionJsonColumnPath(): ?string
+    {
+        return Arr::get($this->config, 'version_json_column_path');
     }
 }

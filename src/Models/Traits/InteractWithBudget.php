@@ -109,10 +109,17 @@ trait InteractWithBudget
         return false;
     }
 
-    public function getVersion(): string | int
+    public function getVersion()
     {
-        return $this->getAttribute(
-            LaravelBudget::getVersionColumnEloquentName()
-        );
+        $version = LaravelBudget::getVersionColumnEloquentName();
+
+        // Jika 'metadata->implementation->year', ambil nilai dari JSON
+        if ($version === LaravelBudget::getVersionJsonColumnPath()) {
+            $metadata = $this->getAttribute(LaravelBudget::getVersionColumnName());
+
+            return json_decode($metadata, true);;
+        }
+
+        return $this->getAttribute($version);
     }
 }

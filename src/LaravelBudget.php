@@ -108,6 +108,11 @@ final class LaravelBudget
         return self::getBudgetConfig()->getVersionColumnType();
     }
 
+    public static function getVersionJsonColumnPath(): ?string
+    {
+        return self::getBudgetConfig()->getVersionJsonColumnPath();
+    }
+
     public static function routes(): void
     {
         BudgetRoutes::routes();
