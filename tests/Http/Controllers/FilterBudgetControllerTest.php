@@ -7,7 +7,6 @@ namespace Inisiatif\LaravelBudget\Tests\Http\Controllers;
 use Inisiatif\LaravelBudget\LaravelBudget;
 use Inisiatif\LaravelBudget\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Config;
 use Inisiatif\LaravelBudget\Database\Factories\BudgetFactory;
 
 final class FilterBudgetControllerTest extends TestCase
