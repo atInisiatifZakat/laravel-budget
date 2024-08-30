@@ -110,6 +110,7 @@ trait InteractWithBudget
     }
 
     public function getVersion(): string|int|array
+
     {
         $version = LaravelBudget::getVersionColumnEloquentName();
 
