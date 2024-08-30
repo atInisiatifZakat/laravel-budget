@@ -28,5 +28,5 @@ interface HasBudget
 
     public function isOverUsage(float $newAmount, bool $exception): bool;
 
-    public function getVersion(): int|string|array;
+    public function getVersion(): string|int|array;
 }
