@@ -30,6 +30,7 @@ final class FetchOneBudgetControllerTest extends TestCase
         $this->assertSame($budget->getBalance(), (float) $response->json('data.balance_amount'));
         $this->assertSame($budget->isOver(), $response->json('data.is_over'));
         $this->assertSame($budget->isLimitReached(), $response->json('data.is_limit_reached'));
+        $this->assertSame($budget->getVersion(), (int) $response->json('data.version'));
     }
 
     public function test_can_show_budget_using_id(): void
@@ -49,6 +50,7 @@ final class FetchOneBudgetControllerTest extends TestCase
         $this->assertSame($budget->getBalance(), (float) $response->json('data.balance_amount'));
         $this->assertSame($budget->isOver(), $response->json('data.is_over'));
         $this->assertSame($budget->isLimitReached(), $response->json('data.is_limit_reached'));
+        $this->assertSame($budget->getVersion(), (int)$response->json('data.version'));
     }
 
     public function test_return_not_found_when_budget_not_exists(): void
