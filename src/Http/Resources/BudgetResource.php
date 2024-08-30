@@ -25,6 +25,7 @@ final class BudgetResource extends JsonResource
             'balance_amount' => $this->resource->getBalance(),
             'is_over' => $this->resource->isOver(),
             'is_limit_reached' => $this->resource->isLimitReached(),
+            'version' => $this->resource->getVersion(),
         ];
     }
 }

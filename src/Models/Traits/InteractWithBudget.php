@@ -108,4 +108,11 @@ trait InteractWithBudget
         // Kembalikan nilai false jika tidak over budget
         return false;
     }
+
+    public function getVersion(): string|int
+    {
+        return $this->getAttribute(
+            LaravelBudget::getVersionColumnEloquentName()
+        );
+    }
 }
