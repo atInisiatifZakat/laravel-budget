@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Inisiatif\LaravelBudget\Models\Traits;
 
+use Illuminate\Support\Arr;
 use Inisiatif\LaravelBudget\LaravelBudget;
 use Inisiatif\LaravelBudget\Exceptions\BudgetOverLimit;
 
@@ -111,8 +112,18 @@ trait InteractWithBudget
 
     public function getVersion(): string|int
     {
-        return $this->getAttribute(
-            LaravelBudget::getVersionColumnEloquentName()
-        );
+        $value = $this->getAttribute(LaravelBudget::getVersionColumnName());
+
+        if (LaravelBudget::getVersionColumnType() === 'json') {
+            $arrayValue = \json_decode($value, true);
+
+            $version = LaravelBudget::getVersionColumnEloquentName(); // "metadata->implementation->year"
+            $columnName = LaravelBudget::getVersionColumnName(); // "metadata"
+            $arrayFilter = str_replace([$columnName.'->', $columnName], '', $version);
+
+            return Arr::get($arrayValue, \str_replace('->', '.', $arrayFilter));
+        }
+
+        return $value;
     }
 }

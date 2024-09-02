@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Inisiatif\LaravelBudget\Tests\Http\Controllers;
 
+use Inisiatif\LaravelBudget\BudgetConfig;
 use Inisiatif\LaravelBudget\LaravelBudget;
 use Inisiatif\LaravelBudget\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -58,5 +59,34 @@ final class FilterBudgetControllerTest extends TestCase
         $response = $this->getJson('/budget?description=Foo')->assertSuccessful();
 
         $this->assertCount(2, $response->json('data'));
+    }
+
+    public function test_can_filter_budget_using_version_json(): void
+    {
+        config()->set('budget.version_column_type', 'json');
+        config()->set('budget.version_column_name', 'metadata');
+        config()->set('budget.version_json_column_path', 'metadata->implementation->year');
+
+        $config = new BudgetConfig(config('budget'));
+
+        $this->app->singleton(BudgetConfig::class, fn () => $config);
+
+        $this->artisan('migrate:fresh');
+
+        $budget = BudgetFactory::new([
+            LaravelBudget::getDescriptionColumnName() => 'Foo Bar',
+            LaravelBudget::getVersionColumnName() => json_encode([
+                'implementation' => [
+                    'year' => 2024,
+                ],
+            ]),
+        ])->count(2)->create();
+
+        BudgetFactory::new()->count(2)->create();
+
+        $response = $this->getJson('/budget?description=Foo')->assertSuccessful()->json('data');
+
+        $this->assertCount(2, $response);
+        $this->assertSame($budget[0]->getVersion(), $response[0]['version']);
     }
 }
