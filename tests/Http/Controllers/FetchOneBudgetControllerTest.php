@@ -7,6 +7,7 @@ namespace Inisiatif\LaravelBudget\Tests\Http\Controllers;
 use Inisiatif\LaravelBudget\Tests\TestCase;
 use Inisiatif\LaravelBudget\Contracts\HasBudget;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Inisiatif\LaravelBudget\BudgetConfig;
 use Inisiatif\LaravelBudget\Database\Factories\BudgetFactory;
 use Inisiatif\LaravelBudget\LaravelBudget;
 
@@ -64,12 +65,22 @@ final class FetchOneBudgetControllerTest extends TestCase
 
     public function test_can_show_budget_using_version_json()
     {
+        config()->set('budget.version_column_type', 'json');
+        config()->set('budget.version_column_name', 'metadata');
+        config()->set('budget.version_json_column_path', 'metadata->implementation->year');
+
+        $config = new BudgetConfig(config('budget'));
+
+        $this->app->singleton(BudgetConfig::class, fn() => $config);
+
+        $this->artisan('migrate:fresh');
+
         /** @var HasBudget $budget */
         $budget = BudgetFactory::new([
             'code' => 'CODE001',
             LaravelBudget::getVersionColumnName() => json_encode([
                 'implementation' => [
-                    'year' => 2024,
+                    'year' => now()->year,
                 ],
             ]),
         ])->createOne();

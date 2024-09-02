@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Inisiatif\LaravelBudget\Models\Traits;
 
+use Illuminate\Support\Arr;
 use Inisiatif\LaravelBudget\LaravelBudget;
 use Inisiatif\LaravelBudget\Exceptions\BudgetOverLimit;
+use Illuminate\Support\Str;
+
 
 trait InteractWithBudget
 {
@@ -109,17 +112,20 @@ trait InteractWithBudget
         return false;
     }
 
-    public function getVersion(): string|int|array
+    public function getVersion(): string|int
     {
-        $version = LaravelBudget::getVersionColumnEloquentName();
+        $value = $this->getAttribute(LaravelBudget::getVersionColumnName());
 
-        // Jika 'metadata->implementation->year', ambil nilai dari JSON
-        if ($version === LaravelBudget::getVersionJsonColumnPath()) {
-            $metadata = $this->getAttribute(LaravelBudget::getVersionColumnName());
+        if (LaravelBudget::getVersionColumnType() === 'json') {
+            $arrayValue = \json_decode($value, true);
 
-            return json_decode($metadata, true);
+            $version = LaravelBudget::getVersionColumnEloquentName(); // "metadata->implementation->year"
+            $columnName = LaravelBudget::getVersionColumnName(); // "metadata"
+            $arrayFilter = str_replace([$columnName . '->', $columnName], '', $version);
+
+            return Arr::get($arrayValue, \str_replace('->', '.', $arrayFilter));
         }
 
-        return $this->getAttribute($version);
+        return $value;
     }
 }

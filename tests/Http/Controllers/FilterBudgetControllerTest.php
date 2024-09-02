@@ -8,6 +8,7 @@ use Inisiatif\LaravelBudget\LaravelBudget;
 use Inisiatif\LaravelBudget\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Config;
+use Inisiatif\LaravelBudget\BudgetConfig;
 use Inisiatif\LaravelBudget\Database\Factories\BudgetFactory;
 
 final class FilterBudgetControllerTest extends TestCase
@@ -32,7 +33,7 @@ final class FilterBudgetControllerTest extends TestCase
             LaravelBudget::getVersionColumnName() => now()->subYear()->year,
         ])->count(2)->create();
 
-        $response = $this->getJson('/budget?version='.now()->year)->assertSuccessful();
+        $response = $this->getJson('/budget?version=' . now()->year)->assertSuccessful();
 
         $this->assertCount(2, $response->json('data'));
     }
@@ -40,11 +41,11 @@ final class FilterBudgetControllerTest extends TestCase
     public function test_can_filter_budget_using_code(): void
     {
         BudgetFactory::new([
-            LaravelBudget::getCodeColumnName() => 'CODE'.now()->year,
+            LaravelBudget::getCodeColumnName() => 'CODE' . now()->year,
         ])->count(2)->create();
         BudgetFactory::new()->count(2)->create();
 
-        $response = $this->getJson('/budget?code='.now()->year)->assertSuccessful();
+        $response = $this->getJson('/budget?code=' . now()->year)->assertSuccessful();
 
         $this->assertCount(2, $response->json('data'));
     }
@@ -63,6 +64,16 @@ final class FilterBudgetControllerTest extends TestCase
 
     public function test_can_filter_budget_using_version_json(): void
     {
+        config()->set('budget.version_column_type', 'json');
+        config()->set('budget.version_column_name', 'metadata');
+        config()->set('budget.version_json_column_path', 'metadata->implementation->year');
+
+        $config = new BudgetConfig(config('budget'));
+
+        $this->app->singleton(BudgetConfig::class, fn() => $config);
+
+        $this->artisan('migrate:fresh');
+
         $budget = BudgetFactory::new([
             LaravelBudget::getDescriptionColumnName() => 'Foo Bar',
             LaravelBudget::getVersionColumnName() => json_encode([
