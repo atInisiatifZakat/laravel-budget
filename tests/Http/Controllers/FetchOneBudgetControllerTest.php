@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Inisiatif\LaravelBudget\Tests\Http\Controllers;
 
+use Inisiatif\LaravelBudget\LaravelBudget;
 use Inisiatif\LaravelBudget\Tests\TestCase;
 use Inisiatif\LaravelBudget\Contracts\HasBudget;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Inisiatif\LaravelBudget\BudgetConfig;
 use Inisiatif\LaravelBudget\Database\Factories\BudgetFactory;
-use Inisiatif\LaravelBudget\LaravelBudget;
 
 final class FetchOneBudgetControllerTest extends TestCase
 {
@@ -63,7 +63,7 @@ final class FetchOneBudgetControllerTest extends TestCase
         $this->getJson('/budget/CODE')->assertNotFound();
     }
 
-    public function test_can_show_budget_using_version_json()
+    public function test_can_show_budget_using_version_json(): void
     {
         config()->set('budget.version_column_type', 'json');
         config()->set('budget.version_column_name', 'metadata');
