@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Inisiatif\LaravelBudget\Tests\Models;
 
+use Inisiatif\LaravelBudget\BudgetConfig;
 use Inisiatif\LaravelBudget\LaravelBudget;
 use Inisiatif\LaravelBudget\Tests\TestCase;
 use Inisiatif\LaravelBudget\Contracts\HasBudget;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Inisiatif\LaravelBudget\BudgetConfig;
 use Inisiatif\LaravelBudget\Database\Factories\BudgetFactory;
 
 final class InteractWithBudgetTest extends TestCase
@@ -36,10 +36,10 @@ final class InteractWithBudgetTest extends TestCase
         $this->assertFalse($budget->isOver());
     }
 
-    public function test_can_return_getVersion_value(): void
+    public function test_can_return_get_version_value(): void
     {
         BudgetFactory::new()->createOne([
-            LaravelBudget::getVersionColumnName() => now()->year
+            LaravelBudget::getVersionColumnName() => now()->year,
         ]);
 
         /** @var HasBudget $budget */
@@ -48,7 +48,7 @@ final class InteractWithBudgetTest extends TestCase
         $this->assertSame(now()->year, (int) $budget->getVersion());
     }
 
-    public function test_can_return_getVersion_json_value(): void
+    public function test_can_return_get_version_json_value(): void
     {
         config()->set('budget.version_column_type', 'json');
         config()->set('budget.version_column_name', 'metadata');
@@ -56,7 +56,7 @@ final class InteractWithBudgetTest extends TestCase
 
         $config = new BudgetConfig(config('budget'));
 
-        $this->app->singleton(BudgetConfig::class, fn() => $config);
+        $this->app->singleton(BudgetConfig::class, fn () => $config);
 
         $this->artisan('migrate:fresh');
 

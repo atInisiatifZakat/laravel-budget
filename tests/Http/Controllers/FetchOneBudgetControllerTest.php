@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Inisiatif\LaravelBudget\Tests\Http\Controllers;
 
+use Inisiatif\LaravelBudget\BudgetConfig;
 use Inisiatif\LaravelBudget\LaravelBudget;
 use Inisiatif\LaravelBudget\Tests\TestCase;
 use Inisiatif\LaravelBudget\Contracts\HasBudget;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Inisiatif\LaravelBudget\BudgetConfig;
 use Inisiatif\LaravelBudget\Database\Factories\BudgetFactory;
 
 final class FetchOneBudgetControllerTest extends TestCase
@@ -71,7 +71,7 @@ final class FetchOneBudgetControllerTest extends TestCase
 
         $config = new BudgetConfig(config('budget'));
 
-        $this->app->singleton(BudgetConfig::class, fn() => $config);
+        $this->app->singleton(BudgetConfig::class, fn () => $config);
 
         $this->artisan('migrate:fresh');
 
