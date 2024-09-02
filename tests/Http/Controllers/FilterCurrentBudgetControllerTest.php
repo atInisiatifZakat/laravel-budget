@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Inisiatif\LaravelBudget\Tests\Http\Controllers;
 
 use Illuminate\Support\Str;
+use Inisiatif\LaravelBudget\BudgetConfig;
 use Inisiatif\LaravelBudget\LaravelBudget;
 use Inisiatif\LaravelBudget\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Inisiatif\LaravelBudget\BudgetConfig;
 use Inisiatif\LaravelBudget\Database\Factories\BudgetFactory;
 
 final class FilterCurrentBudgetControllerTest extends TestCase
@@ -33,11 +33,11 @@ final class FilterCurrentBudgetControllerTest extends TestCase
     {
         BudgetFactory::new([
             LaravelBudget::getVersionColumnName() => now()->year,
-            LaravelBudget::getCodeColumnName() => 'CODE' . Str::random(),
+            LaravelBudget::getCodeColumnName() => 'CODE'.Str::random(),
         ])->count(2)->create();
         BudgetFactory::new([
             LaravelBudget::getVersionColumnName() => now()->subYear()->year,
-            LaravelBudget::getCodeColumnName() => 'CODE' . Str::random(),
+            LaravelBudget::getCodeColumnName() => 'CODE'.Str::random(),
         ])->count(2)->create();
 
         $response = $this->getJson('/budget/current?code=CODE')->assertSuccessful();
@@ -68,13 +68,13 @@ final class FilterCurrentBudgetControllerTest extends TestCase
 
         $config = new BudgetConfig(config('budget'));
 
-        $this->app->singleton(BudgetConfig::class, fn() => $config);
+        $this->app->singleton(BudgetConfig::class, fn () => $config);
 
         $this->artisan('migrate:fresh');
 
         $budget = BudgetFactory::new([
             LaravelBudget::getVersionColumnName() => now()->year,
-            LaravelBudget::getCodeColumnName() => 'CODE' . Str::random(),
+            LaravelBudget::getCodeColumnName() => 'CODE'.Str::random(),
             LaravelBudget::getVersionColumnName() => json_encode([
                 'implementation' => [
                     'year' => now()->year,
@@ -82,10 +82,10 @@ final class FilterCurrentBudgetControllerTest extends TestCase
             ]),
         ])->count(2)->create();
         BudgetFactory::new([
-            LaravelBudget::getCodeColumnName() => 'CODE' . Str::random(),
+            LaravelBudget::getCodeColumnName() => 'CODE'.Str::random(),
             LaravelBudget::getVersionColumnName() => json_encode([
                 'implementation' => [
-                    'year' =>  now()->subYear()->year,
+                    'year' => now()->subYear()->year,
                 ],
             ]),
         ])->count(2)->create();

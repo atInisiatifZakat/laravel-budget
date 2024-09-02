@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Inisiatif\LaravelBudget\Tests\Http\Controllers;
 
+use Inisiatif\LaravelBudget\BudgetConfig;
 use Inisiatif\LaravelBudget\LaravelBudget;
 use Inisiatif\LaravelBudget\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-
-use Inisiatif\LaravelBudget\BudgetConfig;
 use Inisiatif\LaravelBudget\Database\Factories\BudgetFactory;
 
 final class FilterBudgetControllerTest extends TestCase
@@ -33,7 +32,7 @@ final class FilterBudgetControllerTest extends TestCase
             LaravelBudget::getVersionColumnName() => now()->subYear()->year,
         ])->count(2)->create();
 
-        $response = $this->getJson('/budget?version=' . now()->year)->assertSuccessful();
+        $response = $this->getJson('/budget?version='.now()->year)->assertSuccessful();
 
         $this->assertCount(2, $response->json('data'));
     }
@@ -41,11 +40,11 @@ final class FilterBudgetControllerTest extends TestCase
     public function test_can_filter_budget_using_code(): void
     {
         BudgetFactory::new([
-            LaravelBudget::getCodeColumnName() => 'CODE' . now()->year,
+            LaravelBudget::getCodeColumnName() => 'CODE'.now()->year,
         ])->count(2)->create();
         BudgetFactory::new()->count(2)->create();
 
-        $response = $this->getJson('/budget?code=' . now()->year)->assertSuccessful();
+        $response = $this->getJson('/budget?code='.now()->year)->assertSuccessful();
 
         $this->assertCount(2, $response->json('data'));
     }
@@ -70,7 +69,7 @@ final class FilterBudgetControllerTest extends TestCase
 
         $config = new BudgetConfig(config('budget'));
 
-        $this->app->singleton(BudgetConfig::class, fn() => $config);
+        $this->app->singleton(BudgetConfig::class, fn () => $config);
 
         $this->artisan('migrate:fresh');
 

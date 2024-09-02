@@ -7,8 +7,6 @@ namespace Inisiatif\LaravelBudget\Models\Traits;
 use Illuminate\Support\Arr;
 use Inisiatif\LaravelBudget\LaravelBudget;
 use Inisiatif\LaravelBudget\Exceptions\BudgetOverLimit;
-use Illuminate\Support\Str;
-
 
 trait InteractWithBudget
 {
@@ -121,7 +119,7 @@ trait InteractWithBudget
 
             $version = LaravelBudget::getVersionColumnEloquentName(); // "metadata->implementation->year"
             $columnName = LaravelBudget::getVersionColumnName(); // "metadata"
-            $arrayFilter = str_replace([$columnName . '->', $columnName], '', $version);
+            $arrayFilter = str_replace([$columnName.'->', $columnName], '', $version);
 
             return Arr::get($arrayValue, \str_replace('->', '.', $arrayFilter));
         }
